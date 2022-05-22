@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-
+import { ReservationsList } from './features/Reservations';
 function App() {
     return (
         <div className="App">
@@ -19,6 +20,15 @@ function App() {
             Learn React
             </a>
         </header>
+        <div>
+            <ReservationsList/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/test' element={<ReservationsList />} />
+                    <Route path='/test1' element={<ReservationsList />}/>
+                </Routes>
+            </BrowserRouter>
+        </div>
         </div>
     );
 }
