@@ -1,0 +1,19 @@
+.notFoundmain {
+    background-color: rgb(230, 179, 231);
+    width: 400px;
+    margin:auto;
+    margin-top: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h1 {
+    padding: auto;
+    text-align: center;
+}
+
+h2 {
+    padding: auto;
+    text-align: center;
+}
+
