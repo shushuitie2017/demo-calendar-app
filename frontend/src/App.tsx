@@ -31,6 +31,7 @@ const App = () =>{
                     <Routes>
                         <Route path='/test' element={<ReservationsList />} />
                         <Route path='/test1' element={<ReservationsList />}/>
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </BrowserRouter>
                 <button onClick={onClickButton}>ボタン</button>
