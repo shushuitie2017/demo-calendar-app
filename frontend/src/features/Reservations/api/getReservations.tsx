@@ -1,4 +1,7 @@
-
 export const getReservations = () => {
-    return "";
+    return "sample api";
 };
+
+export const postData = () => {
+    return "post data";
+}

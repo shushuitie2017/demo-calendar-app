@@ -1,31 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import './App.css';
 import { ReservationsList } from './features/Reservations';
+import { NotFound } from './components/NotFound';
 const App = () =>{
     const onClickButton = () => {
         alert("アラート！");
     }
+    const isLoggedIn: boolean = false;
+    if (!isLoggedIn) {
+        return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path='' element={<ReservationsList />} />
+                    <Route path='/test1' element={<ReservationsList />}/>
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        );
+    }
     return (
-        /*
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                Learn React
-                </a>
-            </header>
-        </div>
-        */
         <div className="App">
             <header>
                 <h1>Reservation App</h1>

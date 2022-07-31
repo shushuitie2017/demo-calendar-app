@@ -1,11 +1,14 @@
-import { getReservations } from '../api/getReservations';
+import { getReservations, postData } from '../api/getReservations';
 
 
 export const ReservationsList = () => {
-    const deleteUserMutation = getReservations();
+    const reservationsList = getReservations();
+    const resFromPost = postData();
     return (
         <div>
-            Delete User
+            Delete User sample!!!
+            {reservationsList}
+            {resFromPost}
         </div>
     );
 };
