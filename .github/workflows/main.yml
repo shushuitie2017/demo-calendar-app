@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@main # リポジトリをチェックアウト
 
       - name: Install Dependencies
-        run: cd frontend && yarn install
+        run: mkdir .aws && touch credentials && cd frontend && yarn install
 
       - name: Build
         run: cd frontend && pwd && yarn build   # React ビルド
@@ -21,4 +21,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          cd frontend && echo $AWS_ACCESS_KEY_ID && echo $AWS_SECRET_ACCESS_KEY && aws s3 cp --recursive --region ap-northeast-1 build s3://static-site-for-taka-test
+          echo "[default]\naws_access_key_id=${AWS_ACCESS_KEY_ID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" > .aws/credentials && cd frontend && && aws s3 cp --recursive --region ap-northeast-1 build s3://static-site-for-taka-test
