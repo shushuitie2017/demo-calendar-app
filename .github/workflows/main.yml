@@ -2,19 +2,23 @@ name: Build React on S3
 on:
   push:
       branches:
-        - main
+        - master
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@master  # リポジトリをチェックアウト
 
-      - name: "Configure AWS credentials"
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
-      - name: upload
-        run: cd frontend && aws s3 cp build s3://static-site-for-taka-test
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build  # React ビルド
+
+      - name: Deploy  # S3にデプロイ
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          cd frontend && aws s3 cp --recursive --region ap-northeast-1 build s3://static-site-for-taka-test
