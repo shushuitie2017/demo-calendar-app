@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { ReservationsList } from './features/Reservations';
 import { NotFound } from './components/NotFound';
