@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@main #リポジトリをチェックアウト
 
       - name: Install Dependencies
-        run: yarn install
+        run: cd frontend && yarn install
 
       - name: Build
         run: yarn build # React ビルド
