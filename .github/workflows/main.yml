@@ -28,4 +28,4 @@ jobs:
 
       - name: Copy Files to s3
         run: |
-          cd frontend && aws s3 sync ./build s3://static-site-for-taka-test
+          cd frontend && aws s3 sync ./build s3://static-site-for-taka-test --region ap-northeast-1
