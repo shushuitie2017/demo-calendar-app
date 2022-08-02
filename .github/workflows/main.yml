@@ -27,4 +27,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         #-- 仮想マシン上でコマンドを実行 --#
         run:
-          aws s3 sync --delete --region ap-northeast-1 frontend/build s3://static-site-for-taka-test
+          pwd && aws s3 sync --delete --region ap-northeast-1 frontend/build s3://static-site-for-taka-test
