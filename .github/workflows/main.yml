@@ -1,21 +1,30 @@
-name: Build React on S3
+name: Upload to S3
+#-------------------------#
+# トリガー
+#-------------------------#
 on:
+  #-- mainブランチにpushされたら起動する --#
   push:
       branches:
         - main
+
+#-------------------------#
+# 実際の処理
+#-------------------------#
 jobs:
   build:
+    #-- 仮想マシンのOSを指定（ここではUbuntuの最新版） --#
     runs-on: ubuntu-latest
     steps:
+      #-- Gitリポジトリの内容を取得 --#
       - name: Checkout
-        uses: actions/checkout@main # リポジトリをチェックアウト
+        uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: mkdir .aws && touch credentials && cd frontend && yarn install
-
-      - name: Build
+      - name: Deploy to S3
+        #-- GitHub上に登録した変数を持ってくる --#
         env:
-          AWS_ACCESS_KEY_ID: $secrets.AWS_ACCESS_KEY_ID
-          AWS_SECRET_ACCESS_KEY: $secrets.AWS_SECRET_ACCESS_KEY
-        run: |
-          echo "[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" > ./.aws/credentials && cd frontend && pwd && aws s3 cp --recursive --include "*" --region ap-northeast-1 build/ s3://static-site-for-taka-test
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        #-- 仮想マシン上でコマンドを実行 --#
+        run:
+          aws s3 sync --delete --region ap-northeast-1 frontend/build s3://static-site-for-taka-test
