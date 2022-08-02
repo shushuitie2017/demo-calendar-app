@@ -15,10 +15,10 @@ jobs:
 
       - name: Build
         run: cd frontend && pwd && yarn build # React ビルド
-
+    
       - name: Deploy  # S3にデプロイ
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --recursive --include "*" --region ap-northeast-1 build s3://static-site-for-taka-test
+          cd frontend && aws s3 cp --recursive --include "*" --region ap-northeast-1 build s3://static-site-for-taka-test
