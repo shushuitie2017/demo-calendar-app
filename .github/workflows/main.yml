@@ -32,6 +32,8 @@ jobs:
           aws-access-key-id: $env.AWS_ACCESS_KEY_ID
           aws-secret-access-key: $env.AWS_SECRET_ACCESS_KEY
           aws-region: ap-northeast-1
+          role-session-name: deploy-role-session
+        run: aws sts get-caller-identity
 
       - name: Deploy to S3
         #-- 仮想マシン上でコマンドを実行 --#
