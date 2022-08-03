@@ -33,6 +33,8 @@ jobs:
           #aws-secret-access-key: $env.AWS_SECRET_ACCESS_KEY
           #aws-region: ap-northeast-1
           ##role-session-name: deploy-role-session
+      - name: buildaa
+      run: cd frontend && yarn install && yarn build
 
       - name: Deploy to S3
         #-- 仮想マシン上でコマンドを実行 --#
