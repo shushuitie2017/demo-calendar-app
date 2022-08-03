@@ -20,11 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Envvariable
+      - name: EnvVariable
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: echo ${{ env.AWS_ACCESS_KEY_ID }}
+      - name: Session
+        run: aws sts get-caller-identity
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
