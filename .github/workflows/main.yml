@@ -37,5 +37,5 @@ jobs:
       - name: Deploy to S3
         #-- 仮想マシン上でコマンドを実行 --#
         run:
-          #aws s3 cp -r --recursive --region ap-northeast-1 frontend/build s3://static-site-for-taka-test
-          cd frontend && aws s3 cp --recursive build/ s3://static-site-for-taka-test
+          #aws s3 cp -r --recursive  frontend/build s3://static-site-for-taka-test
+          cd frontend && aws s3 cp --recursive  --region ap-northeast-1 build/ s3://static-site-for-taka-test
